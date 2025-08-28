@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airbnb Newsroom</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --airbnb-pink: #FF5A5F;
+            --airbnb-dark: #2B1C1C;
+            --airbnb-light: #FFF8F8;
+        }
+        
+        body {
+            font-family: 'Circular', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .navbar {
+            padding: 20px 0;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--airbnb-pink);
+            font-size: 24px;
+        }
+        
+        .nav-link {
+            color: var(--airbnb-dark);
+            font-weight: 500;
+            margin: 0 15px;
+        }
+        
+        .nav-link:hover {
+            color: var(--airbnb-pink);
+        }
+        
+        .btn-airbnb {
+            background-color: var(--airbnb-pink);
+            color: white;
+            border-radius: 8px;
+            padding: 10px 20px;
+            font-weight: 600;
+        }
+        
+        .btn-airbnb:hover {
+            background-color: #ff4247;
+            color: white;
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .news-card {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            transition: transform 0.3s ease;
+            height: 100%;
+        }
+        
+        .news-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .news-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .news-card-content {
+            padding: 20px;
+        }
+        
+        .news-card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .news-card p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .news-date {
+            color: var(--airbnb-pink);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .category-nav {
+            margin-bottom: 40px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .category-link {
+            padding: 10px 20px;
+            color: #666;
+            font-weight: 500;
+            text-decoration: none;
+            margin-right: 15px;
+        }
+        
+        .category-link.active, .category-link:hover {
+            color: var(--airbnb-pink);
+            border-bottom: 3px solid var(--airbnb-pink);
+        }
+        
+        .subscribe-section {
+            background-color: var(--airbnb-light);
+            padding: 80px 0;
+            text-align: center;
+            margin-top: 60px;
+        }
+        
+        .subscribe-section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+        }
+        
+        .subscribe-section p {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            color: #666;
+        }
+        
+        .form-control {
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+        
+        footer {
+            background-color: var(--airbnb-dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+        
+        .footer-heading {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .social-icons {
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            color: white;
+            font-size: 1.2rem;
+            margin-right: 15px;
+        }
+        
+        .copyright {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #999;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero {
+                padding: 60px 0;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .category-nav {
+                overflow-x: auto;
+                white-space: nowrap;
+                flex-wrap: nowrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">airbnb</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">News</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Company</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Travel</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Policy</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Features</a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <a href="#" class="btn btn-airbnb">Subscribe</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Welcome to Airbnb Newsroom</h1>
+            <p>Stay updated with the latest news, company announcements, travel trends, and policy updates from Airbnb.</p>
+            <a href="#news" class="btn btn-airbnb">Explore News</a>
+        </div>
+    </section>
+
+    <!-- Category Navigation -->
+    <div class="container">
+        <div class="d-flex category-nav">
+            <a href="#" class="category-link active">All News</a>
+            <a href="#" class="category-link">Company</a>
+            <a href="#" class="category-link">Travel</a>
+            <a href="#" class="category-link">Policy</a>
+            <a href="#" class="category-link">Features</a>
+            <a href="#" class="category-link">COVID-19</a>
+        </div>
+    </div>
+
+    <!-- News Section -->
+    <section id="news" class="container mb-5">
+        <h2 class="section-title">Latest News</h2>
+        
+        <div class="row">
+            <!-- News Card 1 -->
+            <div class="col-md-4 mb-4">
+                <div class="news-card">
+                    <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Airbnb apartment">
+                    <div class="news-card-content">
+                        <span class="news-date">July 15, 2023</span>
+                        <h3>Airbnb Introduces New Categories for Unique Stays</h3>
+                        <p>Discover new ways to travel with our latest update featuring unique home categories around the world.</p>
+                        <a href="#" class="text-danger fw-bold">Read More</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- News Card 2 -->
+            <div class="col-md-4 mb-4">
+                <div class="news-card">
+                    <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Beautiful home">
+                    <div class="news-card-content">
+                        <span class="news-date">July 10, 2023</span>
+                        <h3>Summer Travel Trends Report 2023</h3>
+                        <p>New data reveals how travel is evolving this summer with more people opting for long-term stays.</p>
+                        <a href="#" class="text-danger fw-bold">Read More</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- News Card 3 -->
+            <div class="col-md-4 mb-4">
+                <div class="news-card">
+                    <img src="https://images.unsplash.com/photo-1584132967334-10e028bd69f7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Airbnb host">
+                    <div class="news-card-content">
+                        <span class="news-date">July 5, 2023</span>
+                        <h3>How Hosts Are Achieving Superhost Status</h3>
+                        <p>Learn from top-rated hosts about their secrets to providing exceptional guest experiences.</p>
+                        <a href="#" class="text-danger fw-bold">Read More</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- News Card 4 -->
+            <div class="col-md-4 mb-4">
+                <div class="news-card">
+                    <img src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="City view">
+                    <div class="news-card-content">
+                        <span class="news-date">June 28, 2023</span>
+                        <h3>Airbnb's City Portal Helps Local Communities</h3>
+                        <p>New tool provides cities with data to help inform responsible tourism policies.</p>
+                        <a href="#" class="text-danger fw-bold">Read More</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- News Card 5 -->
+            <div class="col-md-4 mb-4">
+                <div class="news-card">
+                    <img src="https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Eco home">
+                    <div class="news-card-content">
+                        <span class="news-date">June 22, 2023</span>
+                        <h3>Sustainable Stays: Airbnb's Green Initiative</h3>
+                        <p>Learn about our new program to recognize eco-friendly homes and sustainable practices.</p>
+                        <a href="#" class="text-danger fw-bold">Read More</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- News Card 6 -->
+            <div class="col-md-4 mb-4">
+                <div class="news-card">
+                    <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwa90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Luxury property">
+                    <div class="news-card-content">
+                        <span class="news-date">June 15, 2023</span>
+                        <h3>Luxury Retreats: Airbnb's New High-End Category</h3>
+                        <p>Premium properties with verified amenities and dedicated support for luxury travelers.</p>
+                        <a href="#" class="text-danger fw-bold">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Subscribe Section -->
+    <section class="subscribe-section">
+        <div class="container">
+            <h2>Stay Updated with Airbnb News</h2>
+            <p>Subscribe to our newsletter to receive the latest updates, trends, and announcements directly in your inbox.</p>
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <form>
+                        <div class="input-group mb-3">
+                            <input type="email" class="form-control" placeholder="Your email address">
+                            <button class="btn btn-airbnb" type="submit">Subscribe</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <a href="#" class="footer-logo">airbnb</a>
+                    <p>Book unique homes and experiences all over the world.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5 class="footer-heading">Company</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Investors</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5 class="footer-heading">Support</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">COVID-19 Resources</a></li>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Cancellation Options</a></li>
+                        <li><a href="#">Neighborhood Support</a></li>
+                        <li><a href="#">Trust & Safety</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5 class="footer-heading">Policy</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">Terms & Privacy</a></li>
+                        <li><a href="#">Guest Refund Policy</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                        <li><a href="#">Accessibility</a></li>
+                        <li><a href="#">Site Map</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="text-center copyright">
+                <p>© 2023 Airbnb, Inc. All rights reserved</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Smooth scrolling script -->
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
